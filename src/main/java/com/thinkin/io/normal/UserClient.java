@@ -23,7 +23,6 @@ public class UserClient {
         PrintWriter printWriter=null;
         try {
             socket = new Socket(server_ip,port);
-
             //
             printWriter = new PrintWriter(socket.getOutputStream(),true);
             printWriter.println(msg);

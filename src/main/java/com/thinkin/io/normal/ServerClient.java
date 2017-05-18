@@ -19,9 +19,9 @@ public  final  class ServerClient {
             server = new ServerSocket(port);
             System.out.println("服务器已启动，端口号：" + port);
             Socket socket;
-            while(true){
+            for(;;){
                 socket = server.accept();
-                new Thread(new HandlerClient(socket)).start();
+                new Thread(new HandlerClient(socket)).start();//threadpool
             }
         }finally{
             if(server != null){

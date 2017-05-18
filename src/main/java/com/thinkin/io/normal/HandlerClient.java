@@ -24,9 +24,8 @@ public class HandlerClient implements Runnable {
             printWriter = new PrintWriter(socket.getOutputStream(),true);
             String handlMsg;
             String result;
-            while(true){
+            for(;;){
                 if((handlMsg = bufferedReader.readLine())==null) break;
-                System.out.println(" ");
                 try{
                     result = "after_handle:"+handlMsg+"************";
                 }catch(Exception e){
