@@ -1,5 +1,7 @@
 package com.thinkin.io.normal;
 
+import com.thinkin.io.utils.CommonUtil;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -33,19 +35,7 @@ public class UserClient {
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
-            try {
-                if(bufferedReader != null){
-                    bufferedReader.close();
-                }
-                if(printWriter != null){
-                    printWriter.close();
-                }
-                if(socket != null){
-                    socket.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            CommonUtil.finallyClose(bufferedReader, printWriter,socket);
         }
 
     }

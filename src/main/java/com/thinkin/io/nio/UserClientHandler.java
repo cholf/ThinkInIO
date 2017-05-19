@@ -1,5 +1,7 @@
 package com.thinkin.io.nio;
 
+import com.thinkin.io.utils.CommonUtil;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -96,7 +98,7 @@ public class UserClientHandler implements Runnable {
 
     public void sendMsg(String msg) throws Exception{
         socketChannel.register(selector, SelectionKey.OP_READ);
-        doWrite(socketChannel, msg);
+        CommonUtil.doWrite(socketChannel, msg);
     }
 
     private void handleInput(SelectionKey key) throws IOException{
@@ -125,14 +127,5 @@ public class UserClientHandler implements Runnable {
                 }
             }
         }
-    }
-
-    //write
-    private void doWrite(SocketChannel channel,String request) throws IOException{
-        byte[] bytes = request.getBytes();
-        ByteBuffer writeBuffer = ByteBuffer.allocate(bytes.length);
-        writeBuffer.put(bytes);
-        writeBuffer.flip();
-        channel.write(writeBuffer);
     }
 }

@@ -1,5 +1,7 @@
 package com.thinkin.io.nio;
 
+import com.thinkin.io.utils.CommonUtil;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -98,7 +100,7 @@ public class ServerClientHandler implements  Runnable {
                     }catch(Exception e){
                         result = "server_exception_:" + e.getMessage();
                     }
-                    doWrite(sc,result);
+                    CommonUtil.doWrite(sc,result);
                 }
                 else if(readBytes<0){
                     key.cancel();
@@ -106,12 +108,5 @@ public class ServerClientHandler implements  Runnable {
                 }
             }
         }
-    }
-    private void doWrite(SocketChannel channel,String response) throws IOException{
-        byte[] bytes = response.getBytes();
-        ByteBuffer writeBuffer = ByteBuffer.allocate(bytes.length);
-        writeBuffer.put(bytes);
-        writeBuffer.flip();
-        channel.write(writeBuffer);
     }
 }
